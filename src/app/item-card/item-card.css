@@ -1,0 +1,20 @@
+.item-card-hover {
+  border-radius: 0.75rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.item-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.1) !important;
+}
+
+.icon-circle {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 50%;
+  background-color: #eef2f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

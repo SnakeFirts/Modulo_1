@@ -1,14 +1,13 @@
 <div class="container py-4">
 
-  <h2 class="mb-4 fw-bold">
-    <span class="border-bottom border-3 border-primary pb-1">
-      Listado de equipos en reparacion
-    </span>
-  </h2>
-  <div class="card shadow-sm mb-4">
-    <div class="card-body">
-      <h6 class="card-subtitle mb-3 text-muted text-uppercase small fw-semibold">
-        Agregar nuevo equipo
+  <div class="mb-4">
+    <h2 class="fw-bold mb-1">Listado de equipos en reparacion</h2>
+    <p class="text-muted mb-0">Gestiona los dispositivos que estan en taller</p>
+  </div>
+  <div class="card border-0 shadow-sm mb-5 form-card">
+    <div class="card-body p-4">
+      <h6 class="card-subtitle mb-3 text-uppercase small fw-bold text-primary">
+        ➕ Agregar nuevo equipo
       </h6>
 
       <form
@@ -17,7 +16,7 @@
         (ngSubmit)="agregarItem(nombreInput.value, descripcionInput.value, estadoSelect.value); itemForm.resetForm()"
       >
         <div class="col-md-4">
-          <label for="nombre" class="form-label">Nombre</label>
+          <label for="nombre" class="form-label fw-semibold">Nombre</label>
           <input
             #nombreInput
             type="text"
@@ -30,7 +29,7 @@
         </div>
 
         <div class="col-md-4">
-          <label for="descripcion" class="form-label">Descripcion</label>
+          <label for="descripcion" class="form-label fw-semibold">Descripcion</label>
           <input
             #descripcionInput
             type="text"
@@ -43,7 +42,7 @@
         </div>
 
         <div class="col-md-2">
-          <label for="estado" class="form-label">Estado</label>
+          <label for="estado" class="form-label fw-semibold">Estado</label>
           <select #estadoSelect id="estado" name="estado" class="form-select">
             <option value="Pendiente">Pendiente</option>
             <option value="En reparacion">En reparacion</option>
@@ -52,13 +51,18 @@
         </div>
 
         <div class="col-md-2">
-          <button type="submit" class="btn btn-primary w-100">
+          <button type="submit" class="btn btn-primary w-100 fw-semibold">
             Agregar
           </button>
         </div>
       </form>
     </div>
   </div>
+  
+  <h6 class="text-uppercase small fw-bold text-muted mb-3">
+    Equipos registrados ({{ items.length }})
+  </h6>
+
   <ul class="list-unstyled">
     <li *ngFor="let item of items">
       <app-item-card [item]="item"></app-item-card>
