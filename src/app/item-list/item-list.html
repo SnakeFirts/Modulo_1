@@ -1,60 +1,72 @@
 <div class="container py-4">
 
-  <h2 class="mb-4">Listado de equipos en reparacion</h2>
+  <h2 class="mb-4 fw-bold">
+    <span class="border-bottom border-3 border-primary pb-1">
+      Listado de equipos en reparacion
+    </span>
+  </h2>
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <h6 class="card-subtitle mb-3 text-muted text-uppercase small fw-semibold">
+        Agregar nuevo equipo
+      </h6>
 
-  <!-- ===================== FORMULARIO ===================== -->
-  <!-- Usamos variables de plantilla (#nombreInput, #descripcionInput) en vez de ngModel.
-       Cada variable hace referencia al elemento <input> del DOM.
-       Al hacer click en el boton, leemos el ".value" de cada input y
-       llamamos a la funcion del componente TypeScript. -->
-  <form
-    #itemForm="ngForm"
-    class="row g-2 align-items-end mb-4 border rounded p-3 bg-light"
-    (ngSubmit)="agregarItem(nombreInput.value, descripcionInput.value); itemForm.resetForm()"
-  >
-    <div class="col-md-4">
-      <label for="nombre" class="form-label">Nombre</label>
-      <input
-        #nombreInput
-        type="text"
-        id="nombre"
-        name="nombre"
-        class="form-control"
-        placeholder="Ej. Samsung S21"
-        required
-      />
+      <form
+        #itemForm="ngForm"
+        class="row g-3 align-items-end"
+        (ngSubmit)="agregarItem(nombreInput.value, descripcionInput.value, estadoSelect.value); itemForm.resetForm()"
+      >
+        <div class="col-md-4">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input
+            #nombreInput
+            type="text"
+            id="nombre"
+            name="nombre"
+            class="form-control"
+            placeholder="Ej. Samsung S21"
+            required
+          />
+        </div>
+
+        <div class="col-md-4">
+          <label for="descripcion" class="form-label">Descripcion</label>
+          <input
+            #descripcionInput
+            type="text"
+            id="descripcion"
+            name="descripcion"
+            class="form-control"
+            placeholder="Ej. Cambio de bateria"
+            required
+          />
+        </div>
+
+        <div class="col-md-2">
+          <label for="estado" class="form-label">Estado</label>
+          <select #estadoSelect id="estado" name="estado" class="form-select">
+            <option value="Pendiente">Pendiente</option>
+            <option value="En reparacion">En reparacion</option>
+            <option value="Listo">Listo</option>
+          </select>
+        </div>
+
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-primary w-100">
+            Agregar
+          </button>
+        </div>
+      </form>
     </div>
-
-    <div class="col-md-5">
-      <label for="descripcion" class="form-label">Descripcion</label>
-      <input
-        #descripcionInput
-        type="text"
-        id="descripcion"
-        name="descripcion"
-        class="form-control"
-        placeholder="Ej. Cambio de bateria"
-        required
-      />
-    </div>
-
-    <div class="col-md-3">
-      <button type="submit" class="btn btn-primary w-100">
-        Agregar
-      </button>
-    </div>
-  </form>
-
-  <!-- ===================== LISTADO ===================== -->
-  <!-- ul/li con *ngFor iterando sobre el array "items" del componente -->
+  </div>
   <ul class="list-unstyled">
     <li *ngFor="let item of items">
       <app-item-card [item]="item"></app-item-card>
     </li>
   </ul>
 
-  <p *ngIf="items.length === 0" class="text-muted">
+  <div *ngIf="items.length === 0" class="alert alert-light border text-center text-muted">
     Aun no hay elementos en el listado.
-  </p>
+  </div>
 
 </div>

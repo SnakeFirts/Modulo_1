@@ -8,11 +8,32 @@ import { Item } from '../item.model';
   styleUrl: './item-card.css'
 })
 export class ItemCard {
-  // Recibe el objeto Item desde el componente padre (el listado)
   @Input() item!: Item;
+  
+  @HostBinding('class')
+  get hostClasses(): string {
+    return `mb-3 d-block border-start border-4 ${this.bordeColor}`;
+  }
 
-  // @HostBinding enlaza una propiedad del elemento HOST (el <app-item-card> en si)
-  // En este caso le agregamos la clase "mb-3" de Bootstrap directamente al host,
-  // para que cada tarjeta tenga separacion inferior sin tener que envolverla en un div extra.
-  @HostBinding('class') hostClasses = 'mb-3 d-block';
+  get bordeColor(): string {
+    switch (this.item?.estado) {
+      case 'Listo':
+        return 'border-success';
+      case 'En reparacion':
+        return 'border-warning';
+      default:
+        return 'border-secondary';
+    }
+  }
+
+  get badgeColor(): string {
+    switch (this.item?.estado) {
+      case 'Listo':
+        return 'text-bg-success';
+      case 'En reparacion':
+        return 'text-bg-warning';
+      default:
+        return 'text-bg-secondary';
+    }
+  }
 }
